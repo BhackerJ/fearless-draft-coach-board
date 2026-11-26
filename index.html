@@ -14,17 +14,17 @@
     <div class="series-tools">
         <nav id="games"></nav>
         <small id="save-status" role="status"></small>
-        <button id="new-series">新建系列赛</button>
+        <button id="new-series">New series</button>
     </div>
     <dialog id="setup">
-        <form method="dialog"><h2>新建系列赛</h2>
-            <label>赛制 <select id="length">
+        <form method="dialog"><h2>New series</h2>
+            <label>Format <select id="length">
                 <option value="3">BO3</option>
                 <option value="5">BO5</option>
             </select></label>
-            <p>创建后将替换本机保存的系列赛，所有阵容从空白开始。</p>
-            <button value="cancel">取消</button>
-            <button value="create" class="primary">创建系列赛</button>
+            <p>Start with empty drafts and replace the saved series on this device.</p>
+            <button value="cancel">Cancel</button>
+            <button value="create" class="primary">Create series</button>
         </form>
     </dialog>
     <section class="board">
@@ -32,18 +32,19 @@
             <div id="lineups"></div>
             <h3>Bans</h3>
             <div id="bans"></div>
-            <p class="note" id="sample-tip" hidden>Try the scrim: select a Red ban slot, then click Leona in the champion pool. Check Blue Support’s remaining engage picks.</p>
+
             <div id="action"></div>
         </div>
-        <div class="panel"><h2>Composition check</h2>
-            <div id="gaps"></div>
-            <p class="note">Engage coverage uses hand-tagged reliable initiators in this sample pool.</p></div>
-    </section>
-    <section class="panel"><h2>Player champion pool</h2>
+        <aside>    <div class="panel"><h2>Player champion pool</h2>
         <div class="filters"><label>Player <select id="player"></select></label>
             <button id="edit-player">Edit comfort picks</button>
             <label><input type="checkbox" id="gap-only" checked> Cover missing engage</label></div>
-        <p id="player-note"></p><div id="recommendations" aria-live="polite"></div>
+        <div id="sample-tip" hidden><button id="scenario-ban">Ban Leona for Red</button></div><p id="player-note"></p><div id="recommendations" aria-live="polite"></div>
+    </div>
+        <div class="panel"><h2>Composition check</h2>
+            <div id="gaps"></div>
+            <p class="note">Engage coverage uses hand-tagged reliable initiators in this sample pool.</p></div>
+        </aside>
     </section>
     <dialog id="player-editor"><form method="dialog">
         <h2 id="editor-title"></h2><div id="champion-checklist"></div>

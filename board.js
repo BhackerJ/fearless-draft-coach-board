@@ -122,19 +122,27 @@ function renderPlayerPool() {
     const limited = el('gap-only').checked;
     const available = pool().filter(name => playerPools[index].includes(name) &&
         (!limited || (!coveredByOthers && engage.has(name))));
-    el('player-note').textContent = !playerPools[index].length ? 'Set this player’s comfort picks to see candidates.' :
+    const selected = series[game].pick[team][slot];
+    el('player-note').textContent = selected && !coveredByOthers && engage.has(selected) && limited
+        ? `${selected} provides engage. Other available replacements appear below.`
+        : !playerPools[index].length ? 'Set this player’s comfort picks to see candidates.' :
         limited && coveredByOthers ? 'Another position already covers engage. Uncheck the filter to see available comfort picks.' :
         limited ? 'Reliable initiators available for this position, accounting for the other four picks.' :
         'All available comfort picks for this player.';
     el('recommendations').innerHTML = available.map(name =>
         `<button data-recommend="${name}" ${editable() ? '' : 'disabled'}>Pick ${name}</button>`).join(' ') ||
-        (playerPools[index].length && !(limited && coveredByOthers) ? 'No matching comfort picks available.' : '');
+        (playerPools[index].length && !(limited && coveredByOthers) ? (selected ? 'No matching replacements.' : 'No matching comfort picks available.') : '');
 }
 
 function render() {
     const {pick} = series[game];
+    const redBans = series[game].ban[1];
+    const bannedLeona = redBans.includes('Leona');
+    const canBanLeona = redBans.includes('') && pool().includes('Leona') && pool().includes('Rell');
     el('sample-tip').hidden = !(game === 1 && editable() && el('player').selectedIndex === 4 &&
-        playerPools[4].includes('Rell') && playerPools[4].includes('Leona') && pool().includes('Leona') && pool().includes('Rell'));
+        playerPools[4].includes('Rell') && playerPools[4].includes('Leona') && (canBanLeona || bannedLeona));
+    el('scenario-ban').disabled = bannedLeona;
+    el('scenario-ban').textContent = bannedLeona ? 'Red banned Leona' : 'Ban Leona for Red';
     renderPlayerPool();
     const {wins, frontier, champion} = standings();
     el('score').textContent = `Blue ${wins[0]} – ${wins[1]} Red` +
@@ -184,7 +192,12 @@ document.addEventListener('click', event => {
         el('player-editor').showModal();
         return;
     }
-    if (b.id === 'new-series') {
+    if (b.id === 'scenario-ban' && editable() && pool().includes('Leona')) {
+        const slot = series[game].ban[1].indexOf('');
+        if (slot < 0) return;
+        selectSlot('ban',1,slot);
+        series[game].ban[1][slot] = 'Leona';
+    } else if (b.id === 'new-series') {
         el('setup').returnValue = '';
         el('setup').showModal();
         return;
