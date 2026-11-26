@@ -1,0 +1,224 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #12181f;
+    color: #edf1f5;
+    font: 16px/1.5 Inter, system-ui, sans-serif
+}
+
+header {
+    background: #1b242e;
+    border-bottom: 1px solid #3b4856;
+    padding: 16px 6%;
+    font-weight: 750;
+    letter-spacing: .12em
+}
+
+header small {
+    float: right;
+    color: #bdc7ce;
+    letter-spacing: 0
+}
+
+.mark {
+    display: inline-block;
+    background: #a3e8cf;
+    color: #13251d;
+    padding: 2px 7px;
+    margin-right: 12px
+}
+
+main {
+    max-width: 1120px;
+    margin: auto;
+    padding: 32px 22px
+}
+
+h1 {
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -.055em;
+    margin: 0
+}
+
+.sub, .note, small, td:first-child {
+    color: #afbdc9
+}
+
+nav, .filters, #pool, #history {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+}
+
+nav {
+    margin: 24px 0 14px
+}
+
+.board {
+    display: grid;
+    grid-template-columns:1.65fr 1fr;
+    gap: 14px
+}
+
+.panel {
+    padding: 22px;
+    background: #1a232d;
+    border: 1px solid #34414e;
+    border-radius: 10px;
+    margin-bottom: 14px
+}
+
+h2 {
+    font-size: 21px;
+    margin: 0 0 14px
+}
+
+h3 {
+    margin: 2px 0
+}
+
+.ok {
+    color: #9de4c4
+}
+
+.warn {
+    color: #ffd18d
+}
+
+article + article {
+    margin-top: 16px
+}
+
+button, select, #pool span, details {
+    background: #24313e;
+    color: inherit;
+    border: 1px solid #435566;
+    padding: 7px 12px;
+    border-radius: 5px;
+    font: inherit
+}
+
+button, summary, select {
+    cursor: pointer
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: default
+}
+
+button[aria-pressed=true], .primary {
+    background: #a3e8cf;
+    color: #13251d
+}
+
+button:hover:enabled {
+    border-color: #a3e8cf
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left
+}
+
+th, td {
+    padding: 7px;
+    border-bottom: 1px solid #34414e
+}
+
+th, small, .note, #action p {
+    font-size: 13px
+}
+
+.filters {
+    margin-bottom: 15px
+}
+
+select {
+    margin-left: 4px
+}
+
+#count {
+    color: #a3e8cf
+}
+
+details {
+    align-self: flex-start
+}
+
+button:focus-visible, summary:focus-visible {
+    outline: 2px solid white
+}
+
+@media (max-width: 720px) {
+    .board {
+        display: block
+    }
+
+    .panel {
+        padding: 16px
+    }
+
+    header small {
+        display: none
+    }
+}
+
+.banrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin: 8px 0
+}
+
+.banrow small {
+    min-width: 34px
+}
+
+.banrow button {
+    font-size: 13px;
+    padding: 5px 8px
+}
+
+#action:not(:empty), #target {
+    margin: 16px 0
+}
+
+.series-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px 0
+}
+
+.series-tools nav {
+    margin: 0
+}
+
+.series-tools small {
+    margin-left: auto
+}
+
+dialog {
+    color: #edf1f5;
+    background: #1a232d;
+    border: 1px solid #435566;
+    border-radius: 10px;
+    max-width: min(420px, 90vw)
+}
+
+dialog::backdrop {
+    background: #080c12bb
+}
+
+#player-editor{width: min(740px,94vw);max-height:85vh;overflow:auto}
+#champion-checklist fieldset{margin:0 0 12px;border:1px solid #435566}
+#champion-checklist label{display:inline-block;margin:3px 8px 3px 0}
+#recommendations button{margin:2px}

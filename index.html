@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Fearless Draft Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><span class="mark">FD</span> DRAFT ROOM <small>League of Legends</small></header>
+<main><h1>Fearless Draft Board</h1>
+    <p class="sub">Series scrim · <span id="format"></span></p>
+    <strong id="score" aria-live="polite"></strong>
+    <div class="series-tools">
+        <nav id="games"></nav>
+        <small id="save-status" role="status"></small>
+        <button id="new-series">新建系列赛</button>
+    </div>
+    <dialog id="setup">
+        <form method="dialog"><h2>新建系列赛</h2>
+            <label>赛制 <select id="length">
+                <option value="3">BO3</option>
+                <option value="5">BO5</option>
+            </select></label>
+            <p>创建后将替换本机保存的系列赛，所有阵容从空白开始。</p>
+            <button value="cancel">取消</button>
+            <button value="create" class="primary">创建系列赛</button>
+        </form>
+    </dialog>
+    <section class="board">
+        <div class="panel"><h2>Draft board</h2>
+            <div id="lineups"></div>
+            <h3>Bans</h3>
+            <div id="bans"></div>
+            <p class="note" id="sample-tip" hidden>Try the scrim: select a Red ban slot, then click Leona in the champion pool. Check Blue Support’s remaining engage picks.</p>
+            <div id="action"></div>
+        </div>
+        <div class="panel"><h2>Composition check</h2>
+            <div id="gaps"></div>
+            <p class="note">Engage coverage uses hand-tagged reliable initiators in this sample pool.</p></div>
+    </section>
+    <section class="panel"><h2>Player champion pool</h2>
+        <div class="filters"><label>Player <select id="player"></select></label>
+            <button id="edit-player">Edit comfort picks</button>
+            <label><input type="checkbox" id="gap-only" checked> Cover missing engage</label></div>
+        <p id="player-note"></p><div id="recommendations" aria-live="polite"></div>
+    </section>
+    <dialog id="player-editor"><form method="dialog">
+        <h2 id="editor-title"></h2><div id="champion-checklist"></div>
+        <button value="cancel">Cancel</button> <button class="primary" value="save">Save pool</button>
+    </form></dialog>
+    <section class="panel"><h2>Champion pool <span id="count"></span></h2>
+        <div class="filters"><label>Position <select id="role"></select></label><label>Function <select id="tag">
+            <option>All functions</option>
+            <option>Engage</option>
+        </select></label></div>
+        <div id="target"></div>
+        <div id="pool"></div>
+    </section>
+    <section class="panel"><h2>Series lockouts</h2>
+        <div id="history"></div>
+    </section>
+</main>
+<script src="board.js"></script>
+</body>
+</html>
